@@ -45,4 +45,16 @@ void criarUsuario(Usuario usuarios[], int *totalUsuarios) {
 
     printf("Usuario criado com sucesso!\n");
 }
+void consultarSaldo(Usuario *usuario) {
+    printf("Saldo em Reais: %.2f\n", usuario->saldoReais);
+    printf("Saldo em Bitcoin: %.6f\n", usuario->saldoBitcoin);
+    printf("Saldo em Ethereum: %.6f\n", usuario->saldoEthereum);
+    printf("Saldo em Ripple: %.6f\n", usuario->saldoRipple);
+}
 
+void consultarExtrato(Usuario *usuario) {
+    printf("Historico de transacoes:\n");
+    for (int i = 0; i < usuario->totalTransacoes; i++) {
+        printf("%s\n", usuario->historicoTransacoes[i]);
+    }
+}
