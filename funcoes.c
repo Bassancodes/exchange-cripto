@@ -139,3 +139,10 @@ void venderCripto(Usuario *usuario, char criptomoeda[], float valorVenda, char s
         printf("Erro na venda: senha incorreta.\n");
     }
 }
+void atualizarCotacoes() {
+    srand(time(NULL));
+    cotacaoBitcoin += cotacaoBitcoin * ((rand() % 11 - 5) / 100.0);
+    cotacaoEthereum += cotacaoEthereum * ((rand() % 11 - 5) / 100.0);
+    cotacaoRipple += cotacaoRipple * ((rand() % 11 - 5) / 100.0);
+}
+
