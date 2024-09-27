@@ -58,3 +58,17 @@ void consultarExtrato(Usuario *usuario) {
         printf("%s\n", usuario->historicoTransacoes[i]);
     }
 }
+void depositarReais(Usuario *usuario, float valor) {
+    usuario->saldoReais += valor;
+    printf("Deposito realizado com sucesso!\n");
+}
+
+int sacarReais(Usuario *usuario, float valor, char senha[]) {
+    if (strcmp(usuario->senha, senha) == 0 && usuario->saldoReais >= valor) {
+        usuario->saldoReais -= valor;
+        printf("Saque realizado com sucesso!\n");
+        return 1;
+    }
+    printf("Erro no saque: senha incorreta ou saldo insuficiente.\n");
+    return 0;
+}
