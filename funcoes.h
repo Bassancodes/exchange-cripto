@@ -24,3 +24,5 @@ void venderCripto(Usuario *usuario, char criptomoeda[], float valorVenda, char s
 void atualizarCotacoes();
 void salvarUsuarios(Usuario usuarios[], int totalUsuarios);
 void carregarUsuarios(Usuario usuarios[], int *totalUsuarios);
+
+#endif
