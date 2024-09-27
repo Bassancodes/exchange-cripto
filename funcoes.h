@@ -21,4 +21,4 @@ void depositarReais(Usuario *usuario, float valor);
 int sacarReais(Usuario *usuario, float valor, char senha[]);
 void comprarCripto(Usuario *usuario, char criptomoeda[], float valorCompra, char senha[]);
 void venderCripto(Usuario *usuario, char criptomoeda[], float valorVenda, char senha[]);
-
+void atualizarCotacoes();
