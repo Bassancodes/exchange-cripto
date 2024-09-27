@@ -15,4 +15,7 @@ typedef struct {
 
 int login(Usuario usuarios[], int totalUsuarios, char cpf[], char senha[]);
 void criarUsuario(Usuario usuarios[], int *totalUsuarios);
+void consultarSaldo(Usuario *usuario);
+void consultarExtrato(Usuario *usuario);
+
 
