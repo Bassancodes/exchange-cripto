@@ -11,4 +11,8 @@ typedef struct {
     float saldoRipple;
     int totalTransacoes;
     char historicoTransacoes[100][100];
-}
+} Usuario;
+
+int login(Usuario usuarios[], int totalUsuarios, char cpf[], char senha[]);
+void criarUsuario(Usuario usuarios[], int *totalUsuarios);
+
