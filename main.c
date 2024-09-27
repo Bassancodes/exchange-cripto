@@ -40,4 +40,15 @@ if (opcao == 1) {
             } else if (opcao == 0) {
                 break;
             }
-        }
+        } else {
+            printf("1. Consultar saldo\n");
+            printf("2. Consultar extrato\n");
+            printf("3. Depositar reais\n");
+            printf("4. Sacar reais\n");
+            printf("5. Comprar criptomoedas\n");
+            printf("6. Vender criptomoedas\n");
+            printf("7. Atualizar cotacoes\n");
+            printf("0. Logout\n");
+
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcao);
