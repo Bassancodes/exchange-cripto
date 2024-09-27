@@ -19,3 +19,25 @@ int main() {
             printf("0. Sair\n");
             printf("Escolha uma opcao: ");
             scanf("%d", &opcao);
+
+if (opcao == 1) {
+                printf("CPF: ");
+                scanf("%s", cpf);
+                printf("Senha: ");
+                scanf("%s", senha);
+                usuarioLogado = login(usuarios, totalUsuarios, cpf, senha);
+
+                if (usuarioLogado == -1) {
+                    printf("Login invalido.\n");
+                }
+            } else if (opcao == 2) {
+                if (totalUsuarios < 10) {
+                    criarUsuario(usuarios, &totalUsuarios);
+                    salvarUsuarios(usuarios, totalUsuarios);
+                } else {
+                    printf("Limite de usuarios atingido.\n");
+                }
+            } else if (opcao == 0) {
+                break;
+            }
+        }
