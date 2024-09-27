@@ -52,3 +52,53 @@ if (opcao == 1) {
 
             printf("Escolha uma opcao: ");
             scanf("%d", &opcao);
+            if (opcao == 1) {
+                consultarSaldo(&usuarios[usuarioLogado]);
+            } else if (opcao == 2) {
+                consultarExtrato(&usuarios[usuarioLogado]);
+            } else if (opcao == 3) {
+                float valor;
+                printf("Valor para depositar: ");
+                scanf("%f", &valor);
+                depositarReais(&usuarios[usuarioLogado], valor);
+            } else if (opcao == 4) {
+                float valor;
+                printf("Valor para sacar: ");
+                scanf("%f", &valor);
+                printf("Senha: ");
+                scanf("%s", senha);
+                sacarReais(&usuarios[usuarioLogado], valor, senha);
+            } else if (opcao == 5) {
+                float valor;
+                char criptomoeda[10];
+                printf("Criptomoeda (Bitcoin, Ethereum, Ripple): ");
+                scanf("%s", criptomoeda);
+                printf("Valor para comprar: ");
+                scanf("%f", &valor);
+                printf("Senha: ");
+                scanf("%s", senha);
+                comprarCripto(&usuarios[usuarioLogado], criptomoeda, valor, senha);
+            } else if (opcao == 6) {
+                float valor;
+                char criptomoeda[10];
+                printf("Criptomoeda (Bitcoin, Ethereum, Ripple): ");
+                scanf("%s", criptomoeda);
+                printf("Valor para vender: ");
+                scanf("%f", &valor);
+                printf("Senha: ");
+                scanf("%s", senha);
+                venderCripto(&usuarios[usuarioLogado], criptomoeda, valor, senha);
+            } else if (opcao == 7) {
+                atualizarCotacoes();
+                printf("Cotacoes atualizadas!\n");
+            } else if (opcao == 0) {
+                usuarioLogado = -1;
+            }
+
+            salvarUsuarios(usuarios, totalUsuarios);
+        }
+    }
+
+    return 0;
+}
+
