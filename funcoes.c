@@ -97,3 +97,45 @@ void comprarCripto(Usuario *usuario, char criptomoeda[], float valorCompra, char
         printf("Erro na compra: senha incorreta ou saldo insuficiente.\n");
     }
 }
+void venderCripto(Usuario *usuario, char criptomoeda[], float valorVenda, char senha[]) {
+    if (strcmp(usuario->senha, senha) == 0) {
+        float taxa = 0.0;
+        float valorLiquido = 0.0;
+
+        if (strcmp(criptomoeda, "Bitcoin") == 0) {
+            valorLiquido = valorVenda / cotacaoBitcoin;
+            if (usuario->saldoBitcoin >= valorLiquido) {
+                taxa = 0.03 * valorVenda;
+                usuario->saldoBitcoin -= valorLiquido;
+                usuario->saldoReais += valorVenda - taxa;
+                printf("Venda de Bitcoin realizada com sucesso! Valor: %.2f, Taxa: %.2f\n", valorVenda, taxa);
+            } else {
+                printf("Saldo insuficiente de Bitcoin.\n");
+            }
+        } else if (strcmp(criptomoeda, "Ethereum") == 0) {
+            valorLiquido = valorVenda / cotacaoEthereum;
+            if (usuario->saldoEthereum >= valorLiquido) {
+                taxa = 0.02 * valorVenda;
+                usuario->saldoEthereum -= valorLiquido;
+                usuario->saldoReais += valorVenda - taxa;
+                printf("Venda de Ethereum realizada com sucesso! Valor: %.2f, Taxa: %.2f\n", valorVenda, taxa);
+            } else {
+                printf("Saldo insuficiente de Ethereum.\n");
+            }
+        } else if (strcmp(criptomoeda, "Ripple") == 0) {
+            valorLiquido = valorVenda / cotacaoRipple;
+            if (usuario->saldoRipple >= valorLiquido) {
+                taxa = 0.01 * valorVenda;
+                usuario->saldoRipple -= valorLiquido;
+                usuario->saldoReais += valorVenda - taxa;
+                printf("Venda de Ripple realizada com sucesso! Valor: %.2f, Taxa: %.2f\n", valorVenda, taxa);
+            } else {
+                printf("Saldo insuficiente de Ripple.\n");
+            }
+        } else {
+            printf("Criptomoeda invalida.\n");
+        }
+    } else {
+        printf("Erro na venda: senha incorreta.\n");
+    }
+}
