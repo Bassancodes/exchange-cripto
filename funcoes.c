@@ -145,4 +145,23 @@ void atualizarCotacoes() {
     cotacaoEthereum += cotacaoEthereum * ((rand() % 11 - 5) / 100.0);
     cotacaoRipple += cotacaoRipple * ((rand() % 11 - 5) / 100.0);
 }
+void salvarUsuarios(Usuario usuarios[], int totalUsuarios) {
+    FILE *file = fopen("usuarios.dat", "wb");
+    if (file != NULL) {
+        fwrite(usuarios, sizeof(Usuario), totalUsuarios, file);
+        fclose(file);
+    } else {
+        printf("Erro ao salvar usuarios.\n");
+    }
+}
+
+void carregarUsuarios(Usuario usuarios[], int *totalUsuarios) {
+    FILE *file = fopen("usuarios.dat", "rb");
+    if (file != NULL) {
+        fread(usuarios, sizeof(Usuario), 10, file);
+        fclose(file);
+    } else {
+        printf("Nenhum usuario cadastrado ainda.\n");
+    }
+}
 
