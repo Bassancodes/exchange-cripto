@@ -72,3 +72,28 @@ int sacarReais(Usuario *usuario, float valor, char senha[]) {
     printf("Erro no saque: senha incorreta ou saldo insuficiente.\n");
     return 0;
 }
+void comprarCripto(Usuario *usuario, char criptomoeda[], float valorCompra, char senha[]) {
+    if (strcmp(usuario->senha, senha) == 0 && usuario->saldoReais >= valorCompra) {
+        float taxa = 0.0;
+        float valorLiquido = 0.0;
+
+        if (strcmp(criptomoeda, "Bitcoin") == 0) {
+            taxa = 0.02 * valorCompra;
+            valorLiquido = valorCompra / cotacaoBitcoin;
+            usuario->saldoBitcoin += valorLiquido;
+        } else if (strcmp(criptomoeda, "Ethereum") == 0) {
+            taxa = 0.01 * valorCompra;
+            valorLiquido = valorCompra / cotacaoEthereum;
+            usuario->saldoEthereum += valorLiquido;
+        } else if (strcmp(criptomoeda, "Ripple") == 0) {
+            taxa = 0.01 * valorCompra;
+            valorLiquido = valorCompra / cotacaoRipple;
+            usuario->saldoRipple += valorLiquido;
+        }
+
+        usuario->saldoReais -= (valorCompra + taxa);
+        printf("Compra realizada com sucesso! Taxa: %.2f\n", taxa);
+    } else {
+        printf("Erro na compra: senha incorreta ou saldo insuficiente.\n");
+    }
+}
