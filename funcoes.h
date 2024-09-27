@@ -17,5 +17,6 @@ int login(Usuario usuarios[], int totalUsuarios, char cpf[], char senha[]);
 void criarUsuario(Usuario usuarios[], int *totalUsuarios);
 void consultarSaldo(Usuario *usuario);
 void consultarExtrato(Usuario *usuario);
-
+void depositarReais(Usuario *usuario, float valor);
+int sacarReais(Usuario *usuario, float valor, char senha[]);
 
