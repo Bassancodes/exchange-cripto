@@ -6,34 +6,6 @@
 #include <string.h>
 #include "admin.h"
 
-// Função para inicializar dados de exemplo nos arquivos .dat
-void inicializarDados() {
-    // Cria e inicializa o arquivo de saldos
-    FILE *saldos_file = fopen("saldos.dat", "w");
-    if (saldos_file == NULL) {
-        printf("Erro ao criar o arquivo saldos.dat\n");
-        return;
-    }
-    fprintf(saldos_file, "12345678901 1500.00\n");
-    fprintf(saldos_file, "98765432100 2500.75\n");
-    fprintf(saldos_file, "55555555555 750.25\n");
-    fclose(saldos_file);
-
-    // Cria e inicializa o arquivo de extratos
-    FILE *extratos_file = fopen("extratos.dat", "w");
-    if (extratos_file == NULL) {
-        printf("Erro ao criar o arquivo extratos.dat\n");
-        return;
-    }
-    fprintf(extratos_file, "12345678901 CompraBTC 500.00\n");
-    fprintf(extratos_file, "12345678901 VendaETH 300.00\n");
-    fprintf(extratos_file, "98765432100 CompraBTC 1200.50\n");
-    fprintf(extratos_file, "55555555555 CompraETH 350.75\n");
-    fclose(extratos_file);
-
-    printf("Arquivos saldos.dat e extratos.dat foram inicializados com dados de exemplo.\n");
-}
-
 
 int efetuarLogin(char *cpf, char *senha) {
     FILE *file = fopen("investidores.dat", "r");
@@ -73,18 +45,27 @@ void cadastrarInvestidor() {
     printf("Digite a senha do investidor: ");
     scanf("%s", senha);
 
-    // Abre o arquivo em modo append para adicionar um novo investidor
+    // Grava o investidor no arquivo de investidores
     FILE *file = fopen("investidores.dat", "a");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo de investidores.\n");
         return;
     }
-
     fprintf(file, "%s %s %s\n", nome, cpf, senha);
     fclose(file);
 
-    printf("Investidor cadastrado com sucesso!\n");
+    // Adiciona um saldo inicial de 0.00 no arquivo de saldos
+    FILE *saldos_file = fopen("saldos.dat", "a");
+    if (saldos_file == NULL) {
+        printf("Erro ao abrir o arquivo de saldos.\n");
+        return;
+    }
+    fprintf(saldos_file, "%s %.2f\n", cpf, 0.00);
+    fclose(saldos_file);
+
+    printf("Investidor cadastrado com sucesso! Saldo inicial: R$0.00\n");
 }
+
 
 
 void excluirInvestidor() {
