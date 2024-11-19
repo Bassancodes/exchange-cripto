@@ -10,6 +10,6 @@ void consultarExtratoInvestidor();
 void cadastrarCriptomoeda();
 void excluirCriptomoeda();
 void atualizarCotacao();
-
+void inicializarDados();
 #endif
 
