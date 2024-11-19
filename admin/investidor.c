@@ -159,7 +159,6 @@ void consultarSaldoInvestidor() {
     printf("Digite o CPF do investidor para consulta de saldo: ");
     scanf("%s", cpf);
 
-    // Abre o arquivo de saldos em modo leitura
     FILE *file = fopen("saldos.dat", "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo de saldos.\n");
@@ -182,6 +181,7 @@ void consultarSaldoInvestidor() {
 
     fclose(file);
 }
+
 
 void consultarExtratoInvestidor() {
     char cpf[12];
