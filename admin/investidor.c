@@ -59,6 +59,7 @@ void cadastrarInvestidor() {
     printf("Digite a senha do investidor: ");
     scanf("%s", senha);
 
+    // Abre o arquivo em modo append para adicionar um novo investidor
     FILE *file = fopen("investidores.dat", "a");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo de investidores.\n");
@@ -70,6 +71,7 @@ void cadastrarInvestidor() {
 
     printf("Investidor cadastrado com sucesso!\n");
 }
+
 
 void excluirInvestidor() {
     char cpf[12];
