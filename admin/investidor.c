@@ -2,6 +2,39 @@
 #include <string.h>
 #include "admin.h"
 
+#include <stdio.h>
+#include <string.h>
+#include "admin.h"
+
+// Função para inicializar dados de exemplo nos arquivos .dat
+void inicializarDados() {
+    // Cria e inicializa o arquivo de saldos
+    FILE *saldos_file = fopen("saldos.dat", "w");
+    if (saldos_file == NULL) {
+        printf("Erro ao criar o arquivo saldos.dat\n");
+        return;
+    }
+    fprintf(saldos_file, "12345678901 1500.00\n");
+    fprintf(saldos_file, "98765432100 2500.75\n");
+    fprintf(saldos_file, "55555555555 750.25\n");
+    fclose(saldos_file);
+
+    // Cria e inicializa o arquivo de extratos
+    FILE *extratos_file = fopen("extratos.dat", "w");
+    if (extratos_file == NULL) {
+        printf("Erro ao criar o arquivo extratos.dat\n");
+        return;
+    }
+    fprintf(extratos_file, "12345678901 CompraBTC 500.00\n");
+    fprintf(extratos_file, "12345678901 VendaETH 300.00\n");
+    fprintf(extratos_file, "98765432100 CompraBTC 1200.50\n");
+    fprintf(extratos_file, "55555555555 CompraETH 350.75\n");
+    fclose(extratos_file);
+
+    printf("Arquivos saldos.dat e extratos.dat foram inicializados com dados de exemplo.\n");
+}
+
+
 // Função para efetuar o login do administrador
 int efetuarLogin(char *cpf, char *senha) {
     const char admin_cpf[] = "12345678901";
