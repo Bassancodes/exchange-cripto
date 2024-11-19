@@ -105,3 +105,39 @@ void excluirInvestidor() {
         printf("Investidor com CPF %s não encontrado.\n", cpf);
     }
 }
+
+#include <stdio.h>
+#include <string.h>
+#include "admin.h"
+
+void consultarSaldoInvestidor() {
+    char cpf[12];
+    float saldo;
+    int encontrado = 0;
+
+    printf("Digite o CPF do investidor para consulta de saldo: ");
+    scanf("%s", cpf);
+
+    // Abre o arquivo de saldos em modo leitura
+    FILE *file = fopen("saldos.dat", "r");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de saldos.\n");
+        return;
+    }
+
+    // Busca o saldo pelo CPF no arquivo
+    char cpf_lido[12];
+    while (fscanf(file, "%s %f\n", cpf_lido, &saldo) != EOF) {
+        if (strcmp(cpf, cpf_lido) == 0) {
+            printf("Saldo do investidor com CPF %s: R$%.2f\n", cpf, saldo);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Investidor com CPF %s não encontrado.\n", cpf);
+    }
+
+    fclose(file);
+}
