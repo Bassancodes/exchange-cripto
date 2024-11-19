@@ -101,6 +101,19 @@ void atualizarSaldo(char *cpf, float valor) {
     }
 }
 
+void registrarExtrato(char *cpf, char *descricao, float valor) {
+    FILE *file = fopen("extratos.dat", "a");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de extratos.\n");
+        return;
+    }
+
+    fprintf(file, "%s %s %.2f\n", cpf, descricao, valor);
+    fclose(file);
+
+    printf("Transação registrada no extrato com sucesso!\n");
+}
+
 
 void excluirInvestidor() {
     char cpf[12];
