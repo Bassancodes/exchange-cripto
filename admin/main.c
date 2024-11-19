@@ -2,6 +2,10 @@
 #include "admin.h"
 
 int main() {
+
+    
+    inicializarDados();  // Chamada temporária para gerar dados, lembrar de comentar depois 
+
     char cpf[12], senha[20];
 
     printf("Login Administrador\n");
