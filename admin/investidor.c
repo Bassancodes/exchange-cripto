@@ -150,9 +150,6 @@ void excluirInvestidor() {
     }
 }
 
-#include <stdio.h>
-#include <string.h>
-#include "admin.h"
 
 void consultarSaldoInvestidor() {
     char cpf[12];
@@ -193,14 +190,13 @@ void consultarExtratoInvestidor() {
     printf("Digite o CPF do investidor para consulta de extrato: ");
     scanf("%s", cpf);
 
-    // Abre o arquivo de extratos em modo leitura
     FILE *file = fopen("extratos.dat", "r");
     if (file == NULL) {
         printf("Erro ao abrir o arquivo de extratos.\n");
         return;
     }
 
-    // Busca as transações pelo CPF no arquivo
+    // Busca e exibe as transações do investidor pelo CPF
     char cpf_lido[12], descricao[100];
     float valor;
     printf("Extrato do investidor com CPF %s:\n", cpf);
