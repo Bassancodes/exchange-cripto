@@ -11,5 +11,7 @@ void cadastrarCriptomoeda();
 void excluirCriptomoeda();
 void atualizarCotacao();
 void atualizarSaldo(char *cpf, float valor);
+void registrarExtrato(char *cpf, char *descricao, float valor);
+
 #endif
 
