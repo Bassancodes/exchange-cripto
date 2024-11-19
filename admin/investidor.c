@@ -35,17 +35,31 @@ void inicializarDados() {
 }
 
 
-// Função para efetuar o login do administrador
 int efetuarLogin(char *cpf, char *senha) {
-    const char admin_cpf[] = "12345678901";
-    const char admin_senha[] = "admin123";
-
-    if (strcmp(cpf, admin_cpf) == 0 && strcmp(senha, admin_senha) == 0) {
-        return 1; // Login bem-sucedido
+    FILE *file = fopen("investidores.dat", "r");
+    if (file == NULL) {
+        printf("Nenhum investidor cadastrado. Registre um investidor primeiro.\n");
+        return 0;
     }
+
+    char nome[100];
+    char cpf_lido[12];
+    char senha_lida[20];
+
+    // Percorre cada linha do arquivo para verificar o CPF e a senha
+    while (fscanf(file, "%s %s %s\n", nome, cpf_lido, senha_lida) != EOF) {
+        if (strcmp(cpf, cpf_lido) == 0 && strcmp(senha, senha_lida) == 0) {
+            fclose(file);
+            printf("Login bem-sucedido! Bem-vindo, %s.\n", nome);
+            return 1; // Login válido
+        }
+    }
+
+    fclose(file);
     printf("CPF ou senha incorretos.\n");
     return 0; // Falha no login
 }
+
 
 void cadastrarInvestidor() {
     char nome[100];
