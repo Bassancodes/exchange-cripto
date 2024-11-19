@@ -66,6 +66,40 @@ void cadastrarInvestidor() {
     printf("Investidor cadastrado com sucesso! Saldo inicial: R$0.00\n");
 }
 
+void atualizarSaldo(char *cpf, float valor) {
+    FILE *file = fopen("saldos.dat", "r");
+    FILE *temp = fopen("temp.dat", "w");
+    if (file == NULL || temp == NULL) {
+        printf("Erro ao abrir os arquivos para atualizar o saldo.\n");
+        return;
+    }
+
+    char cpf_lido[12];
+    float saldo_atual;
+    int encontrado = 0;
+
+    // Lê o arquivo de saldos e copia para um arquivo temporário com as atualizações
+    while (fscanf(file, "%s %f\n", cpf_lido, &saldo_atual) != EOF) {
+        if (strcmp(cpf, cpf_lido) == 0) {
+            saldo_atual += valor; // Atualiza o saldo com o valor da transação
+            encontrado = 1;
+        }
+        fprintf(temp, "%s %.2f\n", cpf_lido, saldo_atual);
+    }
+
+    fclose(file);
+    fclose(temp);
+
+    // Substitui o arquivo original pelo arquivo atualizado
+    remove("saldos.dat");
+    rename("temp.dat", "saldos.dat");
+
+    if (encontrado) {
+        printf("Saldo atualizado com sucesso!\n");
+    } else {
+        printf("Investidor com CPF %s não encontrado.\n", cpf);
+    }
+}
 
 
 void excluirInvestidor() {
