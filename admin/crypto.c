@@ -63,3 +63,35 @@ void excluirCriptomoeda() {
     }
 }
 
+void atualizarCotacao() {
+    FILE *file = fopen("criptomoedas.dat", "r");
+    FILE *temp = fopen("temp.dat", "w");
+    if (file == NULL || temp == NULL) {
+        printf("Erro ao abrir os arquivos para atualização de cotação.\n");
+        return;
+    }
+
+    char nome[50];
+    float cotacao, taxa_compra, taxa_venda;
+    float nova_cotacao;
+
+    printf("Atualização de Cotações de Criptomoedas\n");
+    printf("----------------------------------------\n");
+
+    while (fscanf(file, "%s %f %f %f\n", nome, &cotacao, &taxa_compra, &taxa_venda) != EOF) {
+        printf("Criptomoeda: %s | Cotação Atual: R$%.2f\n", nome, cotacao);
+        printf("Digite a nova cotação para %s: ", nome);
+        scanf("%f", &nova_cotacao);
+
+      
+        fprintf(temp, "%s %.2f %.2f %.2f\n", nome, nova_cotacao, taxa_compra, taxa_venda);
+    }
+
+    fclose(file);
+    fclose(temp);
+
+    remove("criptomoedas.dat");
+    rename("temp.dat", "criptomoedas.dat");
+
+    printf("Cotações atualizadas com sucesso!\n");
+}
