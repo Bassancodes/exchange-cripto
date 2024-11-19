@@ -14,3 +14,26 @@ int efetuarLogin(char *cpf, char *senha) {
     return 0; // Falha no login
 }
 
+void cadastrarInvestidor() {
+    char nome[100];
+    char cpf[12];
+    char senha[20];
+
+    printf("Digite o nome do investidor: ");
+    scanf("%s", nome);
+    printf("Digite o CPF do investidor: ");
+    scanf("%s", cpf);
+    printf("Digite a senha do investidor: ");
+    scanf("%s", senha);
+
+    FILE *file = fopen("investidores.dat", "a");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo de investidores.\n");
+        return;
+    }
+
+    fprintf(file, "%s %s %s\n", nome, cpf, senha);
+    fclose(file);
+
+    printf("Investidor cadastrado com sucesso!\n");
+}
