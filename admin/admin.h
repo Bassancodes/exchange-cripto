@@ -10,6 +10,6 @@ void consultarExtratoInvestidor();
 void cadastrarCriptomoeda();
 void excluirCriptomoeda();
 void atualizarCotacao();
-
+void atualizarSaldo(char *cpf, float valor);
 #endif
 
