@@ -1,0 +1,12 @@
+Extrato de operações - 12345678901
+Data de emissão: 15/04/2025
+
+Tipo: Depósito
+Moeda: Reais
+Valor: R$ 1000.00
+Taxa: R$ 0.00
+
+Tipo: Compra
+Moeda: Bitcoin
+Valor: R$ 200.00
+Taxa: R$ 4.00
