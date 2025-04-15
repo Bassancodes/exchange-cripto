@@ -3,6 +3,9 @@
 #include "../include/login.h"
 #include "../include/carteira.h"
 #include "../include/extrato.h"
+#include "../include/compra.h" 
+
+
 
 int main() {
     Usuario usuarioLogado;
@@ -11,6 +14,10 @@ int main() {
     if (autenticarUsuario(&usuarioLogado)) {
         printf("Login bem-sucedido!\n");
         exibirSaldos(usuarioLogado);
+
+	realizarCompra(&usuarioLogado);
+	exibirSaldos(usuarioLogado); 
+
         gerarExtrato(usuarioLogado);  // Chamada do extrato
     } else {
         printf("CPF ou senha inválidos.\n");
