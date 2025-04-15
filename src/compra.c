@@ -14,7 +14,7 @@ void realizarCompra(Usuario *usuario) {
     printf("1. Bitcoin (BTC)\n");
     printf("2. Ethereum (ETH)\n");
     printf("3. Ripple (XRP)\n");
-    printf("Escolha uma opção: ");
+    printf("Escolha uma opcao: ");
     scanf("%d", &opcao);
 
     printf("Digite o valor em reais (R$) para usar na compra: ");

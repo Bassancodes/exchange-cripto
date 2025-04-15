@@ -1,29 +1,55 @@
 
 #include <stdio.h>
-#include "../include/login.h"
+#include "../include/login.h"    
 #include "../include/carteira.h"
 #include "../include/extrato.h"
-#include "../include/compra.h" 
-
+#include "../include/compra.h"
+#include "../include/deposito.h"
 
 
 int main() {
     Usuario usuarioLogado;
-    criarUsuarioTeste(); // só para testes
+    criarUsuarioTeste(); // Apenas para testes
 
     if (autenticarUsuario(&usuarioLogado)) {
-        printf("Login bem-sucedido!\n");
-        exibirSaldos(usuarioLogado);
+        int opcao;
 
-	realizarCompra(&usuarioLogado);
-	exibirSaldos(usuarioLogado); 
+        do {
+            printf("\n====== MENU PRINCIPAL ======\n");
+            printf("1. Ver saldos da carteira\n");
+            printf("2. Depositar reais\n");
+            printf("3. Comprar criptomoedas\n");
+            printf("4. Gerar extrato\n");
+            printf("5. Sair\n");
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcao);
 
-        gerarExtrato(usuarioLogado);  // Chamada do extrato
+            switch (opcao) {
+                case 1:
+                    exibirSaldos(usuarioLogado);
+                    break;
+                case 2:
+                    realizarDeposito(&usuarioLogado);
+                    break;
+                case 3:
+                    realizarCompra(&usuarioLogado);
+                    break;
+                case 4:
+                    gerarExtrato(usuarioLogado);
+                    break;
+                case 5:
+                    printf("Saindo\n");
+                    break;
+                default:
+                    printf("Opcao invalida.\n");
+            }
+
+        } while (opcao != 5);
+
     } else {
-        printf("CPF ou senha inválidos.\n");
+        printf("CPF ou senha invalidos.\n");
     }
 
     return 0;
 }
-
 
