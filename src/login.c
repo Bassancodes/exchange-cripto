@@ -80,3 +80,26 @@ bool cadastrarUsuario() {
     printf("Usuario cadastrado com sucesso!\n");
     return true;
 }
+
+
+void atualizarUsuario(Usuario usuarioAtualizado) {
+    FILE *arquivo = fopen("data/users.dat", "rb+");
+    if (!arquivo) {
+        printf("Erro ao abrir arquivo para atualização.\n");
+        return;
+    }
+
+    Usuario temp;
+    while (fread(&temp, sizeof(Usuario), 1, arquivo)) {
+        if (strcmp(temp.cpf, usuarioAtualizado.cpf) == 0) {
+            fseek(arquivo, -sizeof(Usuario), SEEK_CUR);
+            fwrite(&usuarioAtualizado, sizeof(Usuario), 1, arquivo);
+            fclose(arquivo);
+            return;
+        }
+    }
+
+    fclose(arquivo);
+    printf("Usuário não encontrado para atualização.\n");
+}
+
