@@ -7,13 +7,24 @@
 #include "../include/deposito.h"
 
 
+
 int main() {
     Usuario usuarioLogado;
-    criarUsuarioTeste(); // Apenas para testes
+    int opcaoInicial;
+
+    printf("====== EXCHANGE DE CRIPTOMOEDAS ======\n");
+    printf("1. Login\n");
+    printf("2. Cadastrar novo usuario\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &opcaoInicial);
+
+    if (opcaoInicial == 2) {
+        cadastrarUsuario();
+        return 0;
+    }
 
     if (autenticarUsuario(&usuarioLogado)) {
         int opcao;
-
         do {
             printf("\n====== MENU PRINCIPAL ======\n");
             printf("1. Ver saldos da carteira\n");
@@ -43,9 +54,7 @@ int main() {
                 default:
                     printf("Opcao invalida.\n");
             }
-
         } while (opcao != 5);
-
     } else {
         printf("CPF ou senha invalidos.\n");
     }
