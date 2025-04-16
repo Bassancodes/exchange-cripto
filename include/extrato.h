@@ -3,6 +3,6 @@
 
 #include "login.h"
 
-void gerarExtrato(Usuario usuario);
+void gerarExtrato(Usuario *usuario);
 
 #endif
