@@ -6,7 +6,7 @@
 bool autenticarUsuario(Usuario* usuarioLogado) {
     FILE *arquivo = fopen("data/users.dat", "rb");
     if (!arquivo) {
-        printf("Arquivo de usuários não encontrado.\n");
+        printf("Arquivo de usuarios nao encontrado.\n");
         return false;
     }
 
@@ -41,4 +41,42 @@ void criarUsuarioTeste() {
     };
     fwrite(&u, sizeof(Usuario), 1, arquivo);
     fclose(arquivo);
+}
+
+bool cadastrarUsuario() {
+    FILE *arquivo = fopen("data/users.dat", "ab+");
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo de usuarios.\n");
+        return false;
+    }
+
+    Usuario novo;
+    printf("Digite o CPF: ");
+    scanf("%s", novo.cpf);
+
+    
+    Usuario temp;
+    while (fread(&temp, sizeof(Usuario), 1, arquivo)) {
+        if (strcmp(temp.cpf, novo.cpf) == 0) {
+            printf("Usuario com esse CPF ja existe.\n");
+            fclose(arquivo);
+            return false;
+        }
+    }
+
+    printf("Digite a senha: ");
+    scanf("%s", novo.senha);
+
+    // Saldos iniciais
+    novo.saldoReais = 0.0;
+    novo.saldoBTC = 0.0;
+    novo.saldoETH = 0.0;
+    novo.saldoXRP = 0.0;
+
+    fseek(arquivo, 0, SEEK_END);
+    fwrite(&novo, sizeof(Usuario), 1, arquivo);
+    fclose(arquivo);
+
+    printf("Usuario cadastrado com sucesso!\n");
+    return true;
 }

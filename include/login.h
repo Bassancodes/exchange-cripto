@@ -12,6 +12,7 @@ typedef struct {
     double saldoXRP;
 } Usuario;
 
+bool cadastrarUsuario();
 bool autenticarUsuario(Usuario* usuarioLogado);
 void criarUsuarioTeste();
 
