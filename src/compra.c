@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/compra.h"
+#include "../include/login.h"
 
 #define COTACAO_BTC 300000.00
-#define COTACAO_ETH 15000.00
+#define COTACAO_ETH 10000.00
 #define COTACAO_XRP 2.00
 
 void realizarCompra(Usuario *usuario) {
@@ -14,7 +15,7 @@ void realizarCompra(Usuario *usuario) {
     printf("1. Bitcoin (BTC)\n");
     printf("2. Ethereum (ETH)\n");
     printf("3. Ripple (XRP)\n");
-    printf("Escolha uma opcao: ");
+    printf("Escolha uma opção: ");
     scanf("%d", &opcao);
 
     printf("Digite o valor em reais (R$) para usar na compra: ");
@@ -47,4 +48,6 @@ void realizarCompra(Usuario *usuario) {
 
     printf("Compra realizada com sucesso!\n");
     printf("Taxa aplicada: R$ %.2f\n", taxa);
+
+    atualizarUsuario(*usuario); 
 }
