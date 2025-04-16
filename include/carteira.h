@@ -3,6 +3,6 @@
 
 #include "login.h"
 
-void exibirSaldos(Usuario usuario);
+void exibirSaldos(Usuario *usuario);
 
 #endif

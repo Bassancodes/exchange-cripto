@@ -1,0 +1,9 @@
+
+========== Extrato ==========
+Data e hora: Wed Apr 16 19:01:56 2025
+Extrato de operacoes - 123
+Saldo em Reais: R$ 11889.00
+Saldo em BTC: 0.004354
+Saldo em ETH: 0.000000
+Saldo em XRP: 0.000000
+=============================
